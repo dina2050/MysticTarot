@@ -11,14 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.ParseException;
-public class Deck {
+public class Deck extends Action {
     List<Card> cards = new ArrayList<Card>();
-
-    public Deck() throws IOException, ParseException {
+    public Deck() throws IOException, ParseException   {
 
 
     }
-
     public void addCard() throws IOException {
         String title = "";
         String description = "";
@@ -46,6 +44,7 @@ public class Deck {
         output.write(json);
         output.close();
         System.out.println("addedcards: " + cards);
+
 
     }
 
@@ -76,6 +75,7 @@ public class Deck {
             System.out.println("description: " + card.description);
             System.out.println("card: " + card);
         }
+
     }
 
     public void deleteCard() throws IOException, ParseException {
@@ -86,6 +86,7 @@ public class Deck {
         cards.removeIf(card -> card.title.equals(CardToRemove));
         File file = new File("cards/" + CardToRemove + ".txt");
         file.delete();
+
 
     }
 
@@ -122,6 +123,7 @@ public class Deck {
             System.out.println("description: " + card.description);
             System.out.println("card: " + card);
         }
+
     }
 }
 
