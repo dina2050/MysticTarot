@@ -1,6 +1,7 @@
 import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -8,9 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.ParseException;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 public class Deck extends Action {
     List<Card> cards = new ArrayList<Card>();
     public Deck() throws IOException, ParseException   {
@@ -20,16 +24,36 @@ public class Deck extends Action {
     public void addCard() throws IOException {
         String title = "";
         String description = "";
-        System.out.println("Add the title of the new card");
-        Scanner scan = new Scanner(System.in);
-        String cardTitle = scan.nextLine();
-        System.out.println("Add the description of the new card");
-        String cardDescription = scan.nextLine();
+        String image = "";
+        AddCardPanel cardEditorPane = new AddCardPanel();
+        String cardTitle = "";
+        String cardDescription = "";
+        String cardImage = "";
+        int result = JOptionPane.showConfirmDialog(null, cardEditorPane,
+                "Add a card", JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+        if (result == JOptionPane.OK_OPTION) {
+            // TODO: do something with info
+            for (AddCardPanel.FieldTitle fieldTitle :
+                    AddCardPanel.FieldTitle.values()) {
+               if (fieldTitle.getTitle() == "Title"){
+                    cardTitle = cardEditorPane.getFieldText(fieldTitle);
+               }
+               else if (fieldTitle.getTitle() == "Description"){
+                    cardDescription = cardEditorPane.getFieldText(fieldTitle);
+               }
+
+               else {
+                    cardImage = cardEditorPane.getFieldText(fieldTitle);
+               }
+
+            }
+        }
+
         title += cardTitle;
         description += cardDescription;
-        System.out.println("title: " + title);
-        System.out.println("description: " + description);
-        Card newcard = new Card(title, description);
+        image += cardImage;
+        Card newcard = new Card(title, description, image);
         cards.add(newcard);
         Writer output;
         File file = new File("cards/" + cardTitle + ".txt");
@@ -48,7 +72,7 @@ public class Deck extends Action {
 
     }
 
-    public void showCards() throws IOException, ParseException {
+    public List<Card> showCards(JLabel label, JPanel panel, GridBagConstraints constraints) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         File dir = new File("cards/");
         File[] directoryListing = dir.listFiles();
@@ -59,7 +83,8 @@ public class Deck extends Action {
                     JSONObject jsonObject = (JSONObject) obj;
                     String title = String.valueOf(jsonObject.get("title"));
                     String description = String.valueOf(jsonObject.get("description"));
-                    Card newcard = new Card(title, description);
+                    String image = String.valueOf(jsonObject.get("image"));
+                    Card newcard = new Card(title, description, image);
                     cards.add(newcard);
                 }
         }
@@ -68,62 +93,132 @@ public class Deck extends Action {
 
                 }
 
-
-
-        for (Card card : cards) {
-            System.out.println("title: " + card.title);
-            System.out.println("description: " + card.description);
-            System.out.println("card: " + card);
+        for (int i=0; i< cards.size(); i++) {
+            System.out.println("title: " + cards.get(i).title);
+            System.out.println("description: " + cards.get(i).description);
+            System.out.println("image: " + cards.get(i).image);
+            label = new JLabel();
+            label.setIcon(new ImageIcon(cards.get(i).image));
+            //label.setText(cards.get(i).description);
+            label.setText("<html><p style=\"width:500px\">"+cards.get(i).description+"</p></html>");
+            constraints.gridy = i;
+            Border border = LineBorder.createGrayLineBorder();
+            label.setBorder(border);
+            constraints.anchor= GridBagConstraints.WEST;
+            panel.add(label, constraints);
         }
-
+        return cards;
     }
 
-    public void deleteCard() throws IOException, ParseException {
-        showCards();
-        System.out.println("Choose the card you want to remove.");
-        Scanner scan = new Scanner(System.in);
-        String CardToRemove = scan.nextLine();
-        cards.removeIf(card -> card.title.equals(CardToRemove));
-        File file = new File("cards/" + CardToRemove + ".txt");
-        file.delete();
+    JLabel label = new JLabel();
+   JPanel panel = new JPanel();
+   GridBagConstraints constraints = new GridBagConstraints();
+   public void updateCard() throws IOException, ParseException {
+         ChooseCardPanel chooseCardPane = new ChooseCardPanel();
+           String CardToUpdate = "";
+           String EnteredTitle = "";
+                        int result = JOptionPane.showConfirmDialog(null, chooseCardPane,
+                                "Choose the card you want to update", JOptionPane.OK_CANCEL_OPTION,
+                                JOptionPane.PLAIN_MESSAGE);
+                        if (result == JOptionPane.OK_OPTION) {
+                            // TODO: do something with info
+
+                            for (ChooseCardPanel.FieldTitle fieldTitle :
+                                    ChooseCardPanel.FieldTitle.values()) {
+                                EnteredTitle = chooseCardPane.getFieldText(fieldTitle);
+
+                            }
+
+                            if (!EnteredTitle.equals("")) {
+                                CardToUpdate += EnteredTitle;
+                                UpdateCardPanel cardUpdatePane = new UpdateCardPanel();
+                                String newTitle = "";
+                                String newDescription = "";
+                                String newImage = "";
+                                UserInterface call = new UserInterface();
+                                cards = showCards(label,panel,constraints);
+                                for (Card card : cards) {
+                                    if (card.title.equals(CardToUpdate)) {
+                                        System.out.println(CardToUpdate);
+                                        int UpdateResult = JOptionPane.showConfirmDialog(null, cardUpdatePane,
+                                                "Update a card", JOptionPane.OK_CANCEL_OPTION,
+                                                JOptionPane.PLAIN_MESSAGE);
+                                        if (UpdateResult == JOptionPane.OK_OPTION) {
+                                            // TODO: do something with info
+                                            for (UpdateCardPanel.FieldTitle fieldTitle :
+                                                    UpdateCardPanel.FieldTitle.values()) {
+                                                if (fieldTitle.getTitle() == "Title") {
+                                                    newTitle = cardUpdatePane.getFieldText(fieldTitle);
+                                                } else if (fieldTitle.getTitle() == "Description") {
+                                                    newDescription = cardUpdatePane.getFieldText(fieldTitle);
+                                                } else {
+                                                    newImage = cardUpdatePane.getFieldText(fieldTitle);
+                                                }
 
 
-    }
+                                        }
+
+                                        card.title = newTitle;
+                                        card.description = newDescription;
+                                        card.image = newImage;
+                                        var mapper = new ObjectMapper();
+                                        var json = mapper.writeValueAsString(card);
+                                        List<String> newLines = new ArrayList<>();
+                                        for (String line : Files.readAllLines(Paths.get("cards/" + CardToUpdate + ".txt"), StandardCharsets.UTF_8)) {
+                                            newLines.add(line.replace(line,json));
 
 
-    public void updateCard() throws IOException, ParseException {
-        showCards();
-        String newTitle, newDescription;
-        System.out.println("Choose the card you want to update");
-        Scanner scan = new Scanner(System.in);
-        String CardToUpdate = scan.nextLine();
-        for (Card card : cards) {
-            if (card.title.equals(CardToUpdate)){
-                System.out.println(card.title);
-                System.out.println(card.description);
-                newTitle = scan.nextLine();
-                newDescription = scan.nextLine();
-                card.title = newTitle;
-                card.description = newDescription;
-                var mapper = new ObjectMapper();
-                var json = mapper.writeValueAsString(card);
-                List<String> newLines = new ArrayList<>();
-                for (String line : Files.readAllLines(Paths.get("cards/" + CardToUpdate + ".txt"), StandardCharsets.UTF_8)) {
-                      newLines.add(line.replace(line,json));
+                                        }
+                                        Files.write(Paths.get("cards/" + CardToUpdate + ".txt"), newLines, StandardCharsets.UTF_8);
+                                        Path source = Paths.get("cards/" + CardToUpdate + ".txt");
+                                        Files.move(source, source.resolveSibling(newTitle + ".txt"));
 
+                                    }
+                                }
 
-                }
-                Files.write(Paths.get("cards/" + CardToUpdate + ".txt"), newLines, StandardCharsets.UTF_8);
-                Path source = Paths.get("cards/" + CardToUpdate + ".txt");
-                Files.move(source, source.resolveSibling(newTitle + ".txt"));
+                            }
 
 
             }
-            System.out.println("title: " + card.title);
-            System.out.println("description: " + card.description);
-            System.out.println("card: " + card);
+
         }
 
     }
+
+      public void deleteCard() throws IOException, ParseException {
+          ChooseCardPanel chooseCardPane = new ChooseCardPanel();
+          String CardToRemove = "";
+          String EnteredTitle = "";
+          int result = JOptionPane.showConfirmDialog(null, chooseCardPane,
+                  "Choose the card you want to delete", JOptionPane.OK_CANCEL_OPTION,
+                  JOptionPane.PLAIN_MESSAGE);
+          if (result == JOptionPane.OK_OPTION) {
+              // TODO: do something with info
+
+              for (ChooseCardPanel.FieldTitle fieldTitle :
+                      ChooseCardPanel.FieldTitle.values()) {
+                  EnteredTitle = chooseCardPane.getFieldText(fieldTitle);
+
+              }
+              CardToRemove += EnteredTitle;
+              cards = showCards(label,panel,constraints);
+              if (!EnteredTitle.equals("")) {
+                  for (Card card : cards) {
+                      if(card.title.equals(CardToRemove)){
+                          File file = new File("cards/" + CardToRemove + ".txt");
+                          file.delete();
+                      }
+
+                      else {
+                          System.out.println("There is no such card!");
+                      }
+
+
+              }
+          }
+
+
+    }
+}
 }
 
