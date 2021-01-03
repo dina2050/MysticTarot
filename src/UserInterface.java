@@ -1,10 +1,15 @@
 import org.json.simple.parser.ParseException;
 import javax.swing.*;
 import javax.swing.Action;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class UserInterface {
@@ -14,30 +19,49 @@ public class UserInterface {
     window.setSize(600,300);
     JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-       /* GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        constraints.fill = GridBagConstraints.BOTH;*/
-
         window.setContentPane(new JScrollPane(panel));
         String url ="images/cardimage.jpg";
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     JMenuBar MyMenu = new JMenuBar();
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        constraints.weightx = 0.5;
-        constraints.weighty = 0.5;
-        constraints.gridheight=1;
-        constraints.gridwidth=1;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-    panel.add(MyMenu,constraints);
+    Deck deck = new Deck();
+
+        UpdateCardPanel c = new UpdateCardPanel();
+
+    panel.add(MyMenu,c.createGbc2(0,0));
+
+    List <String> titles = new ArrayList<String>();
+    List <Card> cards = deck.showCards();
+        for (Card card : cards) {
+            titles.add(card.title);
+        }
+    StringSearchable searchable = new StringSearchable(titles);
+    AutocompleteJComboBox combo = new AutocompleteJComboBox(searchable);
+        JLabel label = new JLabel();
+
+ combo.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent e){
+                            Object value = combo.getSelectedItem();
+                            String image = "";
+                            String description = "";
+                            for (Card card : cards) {
+                                if (value == card.title) {
+                                    image = card.image;
+                                    description = card.description;
+                                }
+
+                            }
+
+                            label.setIcon(new ImageIcon(image));
+                            label.setText("<html><p style=\"width:500px\">"+description+"</p></html>");
+                            panel.add(label, c.createGbc2(1,1));
+
+
+                        }
+                    });
     MyMenu.setBounds(0,0,600,30);
     JMenu ActionMenu = new JMenu("Action");
     MyMenu.add(ActionMenu);
+    MyMenu.add(combo);
     JMenuItem ShowCards = new JMenuItem("Show cards");
     JMenuItem AddCard = new JMenuItem("Add a card");
     JMenuItem UpdateCard = new JMenuItem("Update a card");
@@ -52,18 +76,27 @@ public class UserInterface {
     DeleteCard.setMnemonic(4);
 
 
-        Deck deck = new Deck();
+        GridBagConstraints constraints = new GridBagConstraints();
         HashMap<Integer, Action> MenuItems = new HashMap<Integer, Action>();
         Action action = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel label = new JLabel();
-                try {
-                    deck.showCards(label, panel, constraints);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                } catch (ParseException parseException) {
-                    parseException.printStackTrace();
+                for (int i=0; i< cards.size(); i++) {
+                    JLabel CardLabel = new JLabel();
+                    CardLabel.setIcon(new ImageIcon(cards.get(i).image));
+                    CardLabel.setText("<html><p style=\"width:500px\">"+cards.get(i).description+"</p></html>");
+                    int j=1;
+                    j+=i;
+                    constraints.gridy = j;
+                    constraints.gridx = 0;
+                    constraints.weightx = 0.5;
+                    constraints.weighty = 0.5;
+                    constraints.gridheight=1;
+                    constraints.gridwidth=1;
+                    Border border = LineBorder.createGrayLineBorder();
+                    CardLabel.setBorder(border);
+                    constraints.anchor= GridBagConstraints.WEST;
+                    panel.add(CardLabel, constraints);
                 }
 
             }
@@ -88,7 +121,7 @@ public class UserInterface {
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    deck.updateCard();
+                    deck.updateCard(cards);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 } catch (ParseException parseException) {

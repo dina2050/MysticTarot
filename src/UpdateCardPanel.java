@@ -37,12 +37,11 @@ class UpdateCardPanel extends JPanel {
             gbc = createGbc(1, i);
             JTextField textField = new JTextField(10);
             add(textField, gbc);
-
             fieldMap.put(fieldTitle, textField);
         }
     }
 
-    private GridBagConstraints createGbc(int x, int y) {
+    public GridBagConstraints createGbc(int x, int y) {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = x;
         gbc.gridy = y;
@@ -56,6 +55,18 @@ class UpdateCardPanel extends JPanel {
         gbc.insets = (x == 0) ? WEST_INSETS : EAST_INSETS;
         gbc.weightx = (x == 0) ? 0.1 : 1.0;
         gbc.weighty = 1.0;
+        return gbc;
+    }
+
+    public GridBagConstraints createGbc2(int x, int y) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = x;
+        gbc.gridy = y;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        gbc.gridheight=1;
+        gbc.gridwidth=1;
         return gbc;
     }
 
