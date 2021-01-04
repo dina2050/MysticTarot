@@ -19,6 +19,8 @@ To be able to consult a card I created the function **showCards()** which loops 
 To design the user interface I used Java Swing which is a lightweight GUI toolkit. I made a **UserInterface** class which includes all the components that should be added to the interface.
 It consists of a menu and searchfield. Each of the menu items calls the corresponding function on the click. When consulting the cards, users can see their images and descriptions. (NOTE:You have to enlarge or reduce the window to see the result).
 
+![](images/swing.png) 
+
 To be able to add ActionListeners to menu items I used a **HashMap** class as it was directed.
 
 To add, update and delete a card I decided to use a small dialog box. I inspired myself from an example that I found from the internet and created a confirm box inside a **CardPanel** class. For searchfield i just used the **JComboBox** the implementation of which is explained in the tutorial. The user can search the cards by their titles.
