@@ -1,4 +1,4 @@
-#Mystic tarot
+# Mystic tarot
 
 ### _Introduction_
 
