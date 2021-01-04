@@ -16,6 +16,6 @@
 
                Its impact on your finances:
                Illegal earning, Domination, Gains",
-"image":"images/cardimage.jpg"
+"image":"images/the_devil.jpg"
 }
 

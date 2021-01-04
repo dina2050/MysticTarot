@@ -20,5 +20,5 @@
 
                Its impact on your finances:
                Expansion, Security, Stability, Wealth",
-"image":"images/cardimage.jpg"
+"image":"images/the_emperor.jpg"
 }

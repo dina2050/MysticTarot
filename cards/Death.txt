@@ -20,7 +20,7 @@
                Effect on your finances:
                Crisis, Constraints, Embarrassment",
 
-"image":"images/cardimage.jpg"
+"image":"images/death.jpg"
 
 }
 

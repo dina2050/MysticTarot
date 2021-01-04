@@ -15,7 +15,7 @@ public class StringSearchable implements Searchable<String,String>{
 
      * Constructs a new object based upon the parameter terms.
 
-     * @param cards The inventory of terms to search.
+     * @param cards The inventory of cards to search.
 
      */
 

@@ -21,6 +21,6 @@
                                       Its impact on your finances:
                                       Wealth, Gains, Triumph",
 
-  "image":"images/cardimage.jpg"
+  "image":"images/the_chariot.jpg"
                                       }
 
