@@ -23,7 +23,11 @@ It consists of a menu and searchfield. Each of the menu items calls the correspo
 
 To be able to add ActionListeners to menu items I used a **HashMap** class as it was directed.
 
-To add, update and delete a card I decided to use a small dialog box. I inspired myself from an example that I found from the internet and created a confirm box inside a **CardPanel** class. For searchfield i just used the **JComboBox** the implementation of which is explained in the tutorial. The user can search the cards by their titles.
+To add, update and delete a card I decided to use a small dialog box. I inspired myself from an example that I found from the internet and created a confirm box inside a **CardPanel** class. 
+
+![](images/swing_box.png)
+
+For searchfield i just used the **JComboBox** the implementation of which is explained in the tutorial. The user can search the cards by their titles.
 
 ### _Fortune telling_
 
