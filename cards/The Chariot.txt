@@ -1,0 +1,26 @@
+
+{"title":"The Chariot",
+
+"description":"The Chariot: A Step Towards Deeper Spirituality
+
+                                      Key Words: Luck, Success, Gain, Fresh starts, Evolution
+
+                                      Positive Symbolism: Depicted with an air of triumph and regality, it’s clear to see on The Chariot card that the doubts of yesterday are a distance memory. In romance, it signals that uncertainties and instability are set to come to an end, and will be replaced by golden times. As for your career, expect nothing but success as you’re almost certainly on the path to a better future.
+
+                                      Negative Symbolism: Badly oriented, The Chariot can lead to you becoming overconfident, and you could end up making poor decisions as a consequence.
+
+
+
+
+                                      The Chariot's influence on your love life:
+                                      Adventure, Conquests, Difficult choices, Chance encounters
+
+                                      Its effect on your career:
+                                      Success, Achievement, Advances
+
+                                      Its impact on your finances:
+                                      Wealth, Gains, Triumph",
+
+  "image":"images/cardimage.jpg"
+                                      }
+

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.swing.*;
 
-class UpdateCardPanel extends JPanel {
+class CardPanel extends JPanel {
     enum FieldTitle {
         TITLE("Title"), DESCRIPTION("Description"), IMAGE("Image");
         private String title;
@@ -24,7 +24,7 @@ class UpdateCardPanel extends JPanel {
     private static final Insets EAST_INSETS = new Insets(5, 5, 5, 0);
     private Map<FieldTitle, JTextField> fieldMap = new HashMap<FieldTitle, JTextField>();
 
-    public UpdateCardPanel() {
+    public CardPanel() {
         setLayout(new GridBagLayout());
         setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder("New Card"),
@@ -69,7 +69,13 @@ class UpdateCardPanel extends JPanel {
         gbc.gridwidth=1;
         return gbc;
     }
-
+    public GridBagConstraints createGbc3(int x, int y) {
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = x;
+        gbc.gridy = y;
+        gbc.anchor = GridBagConstraints.WEST;
+        return gbc;
+    }
     public String getFieldText(FieldTitle fieldTitle) {
         return fieldMap.get(fieldTitle).getText();
     }

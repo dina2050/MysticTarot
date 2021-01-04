@@ -1,0 +1,26 @@
+{"title":"Death",
+
+"description":"Death: Something Is Coming To A Definitive End
+
+
+               Key Words: Transformation, Separation, Sadness, Lateness, Destiny
+
+               Positive Symbolism: Whilst recognized as Death here, it’s often the case that this Tarot card is left nameless due to the belief that its symbolism cannot be captured in words. In spite of its morbid appearance, the card isn’t just about death and sorrow, but the cycle of endings and new beginnings. In your love life, this can be seen in the end of a relationship and the subsequent re-birth of romance, or professionally, as a change in job.
+
+               Negative Symbolism: On a surface level, the Death card symbolizes the ending of something meaningful. This could be the breaking up of a relationship or an unforgivable betrayal in a friendship. If you’re dealt this card then expect a radical change to be on the horizon.
+
+
+
+               Death's effect on your love life:
+               Separation, Tension, Betrayal of trust
+
+               Its impact on your career path:
+               Loss of job, Change in career, End of a project
+
+               Effect on your finances:
+               Crisis, Constraints, Embarrassment",
+
+"image":"images/cardimage.jpg"
+
+}
+

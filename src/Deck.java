@@ -1,7 +1,6 @@
 import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import java.awt.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -12,8 +11,6 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.ParseException;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 public class Deck extends Action {
     List<Card> cards = new ArrayList<Card>();
@@ -25,7 +22,7 @@ public class Deck extends Action {
         String title = "";
         String description = "";
         String image = "";
-        AddCardPanel cardEditorPane = new AddCardPanel();
+        CardPanel cardEditorPane = new CardPanel();
         String cardTitle = "";
         String cardDescription = "";
         String cardImage = "";
@@ -34,8 +31,8 @@ public class Deck extends Action {
                 JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
             // TODO: do something with info
-            for (AddCardPanel.FieldTitle fieldTitle :
-                    AddCardPanel.FieldTitle.values()) {
+            for (CardPanel.FieldTitle fieldTitle :
+                    CardPanel.FieldTitle.values()) {
                if (fieldTitle.getTitle() == "Title"){
                     cardTitle = cardEditorPane.getFieldText(fieldTitle);
                }
@@ -67,7 +64,6 @@ public class Deck extends Action {
 
         output.write(json);
         output.close();
-        System.out.println("addedcards: " + cards);
 
 
     }
@@ -93,7 +89,6 @@ public class Deck extends Action {
 
                 }
 
-        System.out.println("deckcards " + cards);
         return cards;
     }
 
@@ -113,20 +108,19 @@ public class Deck extends Action {
        }
            if (!EnteredTitle.equals("")) {
                CardToUpdate += EnteredTitle;
-               AddCardPanel cardUpdatePane = new AddCardPanel();
+               CardPanel cardUpdatePane = new CardPanel();
                String newTitle = "";
                String newDescription = "";
                String newImage = "";
                for (Card card : ListOfCards) {
                    if (card.title.equals(CardToUpdate)) {
-                       System.out.println(CardToUpdate);
                        int UpdateResult = JOptionPane.showConfirmDialog(null, cardUpdatePane,
                                "Update a card", JOptionPane.OK_CANCEL_OPTION,
                                JOptionPane.PLAIN_MESSAGE);
                        if (UpdateResult == JOptionPane.OK_OPTION) {
                            // TODO: do something with info
-                           for (AddCardPanel.FieldTitle fieldTitle :
-                                   AddCardPanel.FieldTitle.values()) {
+                           for (CardPanel.FieldTitle fieldTitle :
+                                   CardPanel.FieldTitle.values()) {
                                if (fieldTitle.getTitle() == "Title") {
                                    newTitle = cardUpdatePane.getFieldText(fieldTitle);
                                } else if (fieldTitle.getTitle() == "Description") {
@@ -188,11 +182,6 @@ public class Deck extends Action {
                           File file = new File("cards/" + CardToRemove + ".txt");
                           file.delete();
                       }
-
-                      else {
-                          System.out.println("There is no such card!");
-                      }
-
 
               }
           }

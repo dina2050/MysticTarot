@@ -75,12 +75,6 @@ public class AutocompleteJComboBox extends JComboBox {
 
                 public void update(){
 
-                    //perform separately, as listener conflicts between the editing component
-
-                    //and JComboBox will result in an IllegalStateException due to editing
-
-                    //the component when it is locked.
-
                     SwingUtilities.invokeLater(new Runnable(){
 
 
@@ -109,7 +103,6 @@ public class AutocompleteJComboBox extends JComboBox {
 
                             removeAllItems();
 
-                            //if founds contains the search text, then only add once.
 
                             if ( !foundSet.contains( tc.getText().toLowerCase()) ){
 
@@ -142,12 +135,6 @@ public class AutocompleteJComboBox extends JComboBox {
 
 
             });
-
-            //When the text component changes, focus is gained
-
-            //and the menu disappears. To account for this, whenever the focus
-
-            //is gained by the JTextComponent and it has searchable values, we show the popup.
 
             tc.addFocusListener(new FocusListener(){
 

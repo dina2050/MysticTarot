@@ -6,6 +6,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,12 +21,11 @@ public class UserInterface {
     JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         window.setContentPane(new JScrollPane(panel));
-        String url ="images/cardimage.jpg";
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     JMenuBar MyMenu = new JMenuBar();
     Deck deck = new Deck();
 
-        UpdateCardPanel c = new UpdateCardPanel();
+        CardPanel c = new CardPanel();
 
     panel.add(MyMenu,c.createGbc2(0,0));
 
@@ -60,7 +60,17 @@ public class UserInterface {
                     });
     MyMenu.setBounds(0,0,600,30);
     JMenu ActionMenu = new JMenu("Action");
+    JMenu Divination = new JMenu("Divination");
     MyMenu.add(ActionMenu);
+    MyMenu.add(Divination);
+       List <Icon> icons = new ArrayList<>();
+       Divination click = new Divination();
+        MouseListener ml = new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt){
+                click.FortuneTeller(cards,panel,icons);
+            }
+        };
+        Divination.addMouseListener(ml);
     MyMenu.add(combo);
     JMenuItem ShowCards = new JMenuItem("Show cards");
     JMenuItem AddCard = new JMenuItem("Add a card");
@@ -145,6 +155,8 @@ public class UserInterface {
 
             }
         };
+
+
         MenuItems.put(1, action);
         MenuItems.put(2, action1);
         MenuItems.put(3, action2);

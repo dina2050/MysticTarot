@@ -1,0 +1,6 @@
+{"title":"The Empress",
+"description":"The Empress: The Symbol Of Maternity  Key Words: Intelligence, Reflection, Intuition, Communication, Understanding  Positive Symbolism: The brilliant Empress symbolizes abstract thought, pure intelligence, and a logical mind.
+It’s a card that aids communication between loved ones, which nurtures intimacy and care as a result.
+Negative Symbolism: When negatively oriented, The Empress’ intelligence can quickly become vanity and arrogance, and your judgement will be clouded as a result. Your mind might be brimming with logic and sense, but this can either cause you to become overwhelmed, or you’ll refuse to listen to the views of others.
+ The Empress' influence on your love life: Success, Joy, Fulfilment  Its effect on your career: Creativity, Communication, Intelligence  Its impact on your finances: Smooth, Easygoing, Carefree",
+ "image":"images/cardimage.jpg"}

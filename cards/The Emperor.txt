@@ -1,0 +1,24 @@
+
+{
+"title": "The Emperor",
+"description":"The Emperor: Embrace The Wisdom On Offer
+
+               Key Words: Domination, Stability, Responsibility, Construction, Success
+
+               Positive Symbolism: The Emperor embodies everything that comes with authority and omnipotence. When it comes to romance, you should expect this card to strengthen feelings and tighten the bond between you and the person that holds the keys to your heart. In the workplace, The Emperor is capable of stabilizing complex situations and demonstrating the essential role of authority.
+
+               Negative Symbolism: In spite of its power and respect, the Emperor toes the line between strong leader and tyrant. Badly oriented, you could be at risk of abusing your position of authority and letting your arrogance get the better of you.
+
+
+
+
+               The Emperor's effect on your love life:
+               Fortifying romance, Long-term relationships, Blossoming intimacy
+
+               Its effect on your career:
+               Power, Ambition, Leadership, Job security
+
+               Its impact on your finances:
+               Expansion, Security, Stability, Wealth",
+"image":"images/cardimage.jpg"
+}

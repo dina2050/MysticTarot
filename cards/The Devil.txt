@@ -1,0 +1,21 @@
+{
+"title":"The Devil",
+"description":"The Devil: Fight Against Negative Temptations
+
+               Key Words: Instinct, Energy, Passion, Desire, Temptation
+
+               Positive Symbolism: Of all the cards in the Tarot, The Devil is the one that awakens the strongest instincts and deepest impulses. Despite its satanic appearance, it can be a card that promotes good work thanks to the amount of energy that it provides. In your love life, it can mean an unfulfilled desire or raging passion that’s yet to be acted on. As for your career, The Devil is the definition of ambition, and you’ll find yourself doing everything you can to achieve power over your colleagues.
+
+               Negative Symbolism: An embodiment of temptation and instinct, The Devil can often lead us down darker paths due to its thirst for power and weak spot for temptation. When dealt, you’re likely to find yourself surrounded by chaos as a result of your poorly thought-through actions.
+
+               The Devil's influence on your love life:
+               Possessiveness, Jealousy, Passion, Sexuality
+
+               Its effect on your career:
+               Ambition, Envy, Power, Manipulation
+
+               Its impact on your finances:
+               Illegal earning, Domination, Gains",
+"image":"images/cardimage.jpg"
+}
+
